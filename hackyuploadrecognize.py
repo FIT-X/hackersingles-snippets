@@ -1,5 +1,5 @@
 import json
-
+import sys
 from clarifai.rest import ClarifaiApp
 
 from math import sqrt
@@ -31,9 +31,10 @@ buckets = list(storage_client.list_buckets())
 
 bucket = storage_client.get_bucket('pennappsfacebucket')
 
+filename = sys.argv[1]
 
-destination_blob_name = 'test2.jpg'
-source_file_name = 'test2.jpg'
+destination_blob_name = 'testpic.jpg'
+source_file_name = filename
 
 blob = bucket.blob(destination_blob_name)
 
@@ -41,7 +42,7 @@ blob.upload_from_filename(source_file_name)
 blob.make_public()
 
 
-testPhoto = "https://storage.googleapis.com/pennappsfacebucket/test2.jpg"
+testPhoto = "https://storage.googleapis.com/pennappsfacebucket/testpic.jpg"
 
 peterPhoto = "https://storage.googleapis.com/pennappsfacebucket/peter.jpg"
 
